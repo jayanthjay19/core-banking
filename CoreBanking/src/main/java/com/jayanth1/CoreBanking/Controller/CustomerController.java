@@ -1,4 +1,4 @@
-    package com.jayanth1.CoreBanking;
+    package com.jayanth1.CoreBanking.Controller;
 
     import com.jayanth1.CoreBanking.Entity.Customer;
     import com.jayanth1.CoreBanking.Service.CustomerService;

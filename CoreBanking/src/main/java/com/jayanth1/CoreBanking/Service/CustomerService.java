@@ -1,6 +1,7 @@
 package com.jayanth1.CoreBanking.Service;
 
 import com.jayanth1.CoreBanking.Entity.Customer;
+import com.jayanth1.CoreBanking.Exception.CustomerNotFoundException;
 import com.jayanth1.CoreBanking.Repository.CustomerRepo;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class CustomerService {
 
     public Customer getCustomerById(Long id){
         log.info("Getting customer");
-       return repo.findById(id).orElseThrow(() -> new RuntimeException( "Customer not found with id!"+ id));
+       return repo.findById(id).orElseThrow(() -> new CustomerNotFoundException(id));
     }
 
       public void createCustomer(Customer customer){
@@ -30,7 +31,7 @@ public class CustomerService {
       }
       public Customer updateCustomerById(Long id, Customer updatedCustomer){
           Customer existingCustomer =
-                  repo.findById(id).orElseThrow(() -> new RuntimeException("Customer not found!"));
+                  repo.findById(id).orElseThrow(() -> new CustomerNotFoundException(id));
 
           existingCustomer.setName(updatedCustomer.getName());
           existingCustomer.setMobile(updatedCustomer.getMobile());
